@@ -20,6 +20,7 @@
     ],
     "rules": {
         "linebreak-style": ["error", "windows"],
+        "implicit-arrow-linebreak": ["error", "below"], 
         "import/extensions": [
             "error",
             "ignorePackages",
