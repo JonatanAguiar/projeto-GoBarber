@@ -19,7 +19,8 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "linebreak-style": ["error", "windows"],
+        "class-methods-use-this": "off",
+        "linebreak-style": 0,
         "implicit-arrow-linebreak": ["error", "below"], 
         "import/extensions": [
             "error",
