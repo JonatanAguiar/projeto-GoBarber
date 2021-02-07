@@ -19,6 +19,7 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "camelcase": "off",
         "class-methods-use-this": "off",
         "linebreak-style": 0,
         "implicit-arrow-linebreak": ["error", "below"], 
