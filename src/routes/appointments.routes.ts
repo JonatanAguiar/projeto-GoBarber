@@ -1,6 +1,9 @@
+import 'reflect-metadata';
+
 import { Router } from 'express';
-import { parseISO } from 'date-fns';
 import { getCustomRepository } from 'typeorm';
+import { parseISO } from 'date-fns';
+
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
 import CreateAppointmentService from '../services/CreateAppointmentService';
 
@@ -21,7 +24,10 @@ appointmentsRouter.post('/', async (request, response) => {
 
     const createAppointment = new CreateAppointmentService();
 
-    const appointment = await createAppointment.execute({ date: parsedDate, provider });
+    const appointment = await createAppointment.execute({
+      date: parsedDate,
+      provider,
+    });
 
     return response.json(appointment);
   } catch (err) {

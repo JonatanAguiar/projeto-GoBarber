@@ -1,44 +1,48 @@
 {
     "env": {
-        "es2020": true,
+        "es2021": true,
         "node": true
     },
     "extends": [
-        "airbnb-base"
+        "plugin:react/recommended",
+        "airbnb"
     ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "ecmaVersion": 2018,
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
         "sourceType": "module"
     },
     "plugins": [
+        "react",
         "@typescript-eslint"
     ],
     "rules": {
-        "camelcase": "off",
-        "class-methods-use-this": "off",
-        "linebreak-style": 0,
-        "implicit-arrow-linebreak": ["error", "below"], 
-        "import/extensions": [
-            "error",
-            "ignorePackages",
-            {
-              "js": "never",
-              "jsx": "never",
-              "ts": "never",
-              "tsx": "never"
-            }
-        ]
+      "import/no-unresolved": "off",
+      "no-use-before-define": "off",
+      "@typescript-eslint/no-use-before-define": ["error"],
+      "import/no-extraneous-dependencies": ["error",  {"devDependencies": true}],
+      "react/jsx-props-no-spreading": "off",
+      "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "js": "never",
+          "jsx": "never",
+          "ts": "never",
+          "tsx": "never"
+        }
+      ]
     },
     "settings": {
-        "import/resolver": {
-            "node": {
-                "extensions": [".js", ".jsx", ".ts", ".tsx"]
-            }
-        }
+      "import/resolver": {
+        "node": {
+          "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        ,
+        "typescript": {}
+      }
     }
 }
