@@ -1,4 +1,7 @@
+/* eslint-disable class-methods-use-this */
 import { getRepository } from 'typeorm';
+import { hash } from 'bcryptjs';
+
 import User from '../models/User';
 
 interface Request {
@@ -8,26 +11,28 @@ interface Request {
 }
 
 class CreateUserService {
-    public async execute({name, email, password}: Request): Promise<User>{
-        const usersRepository = getRepository(User);
-        
-        const checkUsersExists = await usersRepository.findOne({
-            where: { email },
-        });
+  public async execute({ name, email, password }: Request): Promise<User> {
+    const usersRepository = getRepository(User);
 
-        if(checkUsersExists){
-            throw new Error('Email adress already used');
-        }
+    const checkUsersExists = await usersRepository.findOne({
+      where: { email },
+    });
 
-        const user = usersRepository.create({
-            name,
-            email,
-            password,
-        });
-
-        await usersRepository.save(user);
-
-        return user;
+    if (checkUsersExists) {
+      throw new Error('Email adress already used');
     }
+
+    const hashedPassword = await hash(password, 8);
+
+    const user = usersRepository.create({
+      name,
+      email,
+      password: hashedPassword,
+    });
+
+    await usersRepository.save(user);
+
+    return user;
+  }
 }
 export default CreateUserService;
