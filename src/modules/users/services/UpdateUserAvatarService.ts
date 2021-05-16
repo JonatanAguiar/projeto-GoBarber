@@ -5,7 +5,7 @@ import AppError from '@shared/errors/AppError';
 import IUsersRepository from '../repositories/IUsersRepository';
 import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';
 
-interface Request {
+interface IRequest {
   user_id: string;
   avatarFileName: string;
 }
@@ -19,7 +19,7 @@ class UpdateUserAvatarService {
     @inject('StorageProvider')
     private storageProvider: IStorageProvider,
   ){}
-  public async execute({ user_id, avatarFileName }: Request): Promise<User> {
+  public async execute({ user_id, avatarFileName }: IRequest): Promise<User> {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
